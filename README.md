@@ -11,7 +11,7 @@ Este repositorio traz o Backend deste projeto.
 
 ## ⚙ Funcionalidades
 
-Este projeto tras as interfaces para funcionamento do frontend como: criação de usuário, login, criação de produtos e suas categorias, criação de pedidos, pagamentos, etc...
+Este projeto tras as interfaces necessárias para o perfeito funcionamento do frontend como: criação de usuário, login, criação de produtos e suas categorias, criação de pedidos, pagamentos, etc...
 
 ## 🤝🏻 Agradecimentos
 
