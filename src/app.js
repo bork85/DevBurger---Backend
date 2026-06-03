@@ -8,6 +8,11 @@ import cors from 'cors';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = resolve(__filename, "..");
 
+const corsOptions = {
+    origin: 'https://devburger-fe.vercel.app/', // Substitua pelo seu domínio
+    optionsSuccessStatus: 200 
+};
+
 class App {
     constructor() {
         this.app = express();
@@ -18,7 +23,7 @@ class App {
 
     midlewares() {
         this.app.use(json());
-        this.app.use(cors());
+        this.app.use(cors(corsOptions));
         this.app.use('/product-files', express.static(resolve(__dirname + '/assets')));
         this.app.use('/category-files', express.static(resolve(__dirname + '/assets')));
     }
