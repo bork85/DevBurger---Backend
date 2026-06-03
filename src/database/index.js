@@ -13,16 +13,27 @@ class Database {
         this.mongo();
     }
 
-    init() {
-        this.connection = new Sequelize(configDatabase);
+    async init() {
+    this.connection = new Sequelize(configDatabase);
+    models.forEach((model) => model.init(this.connection));
+    models.forEach((model) => model.associate && model.associate(this.connection.models));
 
-        models.forEach((model) => model.init(this.connection));
-        models.forEach((model) => model.associate && model.associate(this.connection.models));
+    try {
+        await this.connection.authenticate();
+        console.log('PostgreSQL conectado!');
+    } catch (err) {
+        console.error('Erro ao conectar no PostgreSQL:', err.message);
     }
+}
 
-    mongo() {
-        // MongoDB connection logic (if needed in the future)
-        this.mongoConnection = mongoose.connect('mongodb://localhost:27017/devburger', );
+
+    async mongo() {
+        try {
+            this.mongoConnection = await mongoose.connect('mongodb://localhost:27017/devburger');
+            console.log('MongoDB conectado!');
+        } catch (err) {
+            console.warn('MongoDB não conectado (opcional):', err.message);
+        }
     }
 }
 export default new Database();
