@@ -1,3 +1,4 @@
+import pg from 'pg';
 import Sequelize from 'sequelize';
 import configDatabase from '../config/database.js';
 import User from '../app/models/User.js';
@@ -14,7 +15,7 @@ class Database {
     }
 
     init() {
-        this.connection = new Sequelize(configDatabase);
+        this.connection = new Sequelize({ ...configDatabase, dialectModule: pg });
         models.forEach((model) => model.init(this.connection));
         models.forEach((model) => model.associate && model.associate(this.connection.models));
     }
