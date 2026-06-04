@@ -1,4 +1,6 @@
+import 'dotenv/config';
 import express, { json } from 'express';
+import './database/index.js';
 import routes from './routes.js';
 import { resolve } from 'node:path';
 import { fileURLToPath } from "url";
