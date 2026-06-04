@@ -7,7 +7,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 // rotina para calcular valor total do pedido
 const calculateOrderAmount = (items) => {
     const total = items.reduce((acc, current) => {
-        return current.price * current.quantity + acc;
+        return Math.round(current.price * current.quantity * 100) + acc;
     }, 0);
     return total;
 }
@@ -36,10 +36,9 @@ class CreatePaymentIntentController {
         const paymentIntent = await stripe.paymentIntents.create({
             amount: amount,
             currency: 'brl',
-            automatic_payment_methods: {
-                enabled: true,
-            },
+            payment_method_types: ['card'],
         });
+
         res.status(200).json({
             clientSecret: paymentIntent.client_secret,
             dpmCheckerLink: `https://dashboard.stripe.com/settings/payment_methods/review?transaction_id=${paymentIntent.id}`,
