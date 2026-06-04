@@ -1,16 +1,11 @@
-//import { Sequelize } from 'sequelize';
 const config = {
     dialect: 'postgres',
-    host: 'localhost',
-    port: 5432,
-    username: 'postgres',
-    password: 'postgres',
-    database: 'devburger',
-    pool: {
-        max: 5,
-        min: 0,
-        acquire: 30000,
-        idle: 10000,
+    url: process.env.DATABASE_URL,
+    dialectOptions: {
+        ssl: {
+            require: true,
+            rejectUnauthorized: false,
+        },
     },
     define: {
         timestamps: true,
