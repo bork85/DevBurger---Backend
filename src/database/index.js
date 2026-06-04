@@ -15,7 +15,7 @@ class Database {
     }
 
     init() {
-        this.connection = new Sequelize({ ...configDatabase, dialectModule: pg });
+        this.connection = new Sequelize(process.env.DATABASE_URL, { ...configDatabase, dialectModule: pg });
         models.forEach((model) => model.init(this.connection));
         models.forEach((model) => model.associate && model.associate(this.connection.models));
     }
