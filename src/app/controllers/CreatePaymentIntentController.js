@@ -36,7 +36,9 @@ class CreatePaymentIntentController {
         const paymentIntent = await stripe.paymentIntents.create({
             amount: amount,
             currency: 'brl',
-            payment_method_types: ['card'],
+            automatic_payment_methods: {
+                enabled: true,
+            },
         });
 
         res.status(200).json({
