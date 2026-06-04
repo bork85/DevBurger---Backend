@@ -9,7 +9,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = resolve(__filename, "..");
 
 const corsOptions = {
-    origin: 'https://devburger-fe.vercel.app/', // Substitua pelo seu domínio
+    origin: 'https://devburger-fe.vercel.app',
     optionsSuccessStatus: 200 
 };
 
