@@ -1,4 +1,4 @@
 import 'dotenv/config';
-import '../src/database/index.js';
+import './database/index.js';
 import app from './app.js';
-app.listen(3001, () => console.log('Server is running at port 3001...!!!'));
+app.listen(process.env.PORT || 3001, () => console.log('Server is running...'));
